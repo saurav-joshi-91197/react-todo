@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './App.css';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import 'bootstrap/dist/css/bootstrap.css';
+import './bootstrap-dist/css/bootstrap.css';
 import Tasklist from './components/tasklist'
 
 ReactDOM.render(<Tasklist value="sample string" />, document.getElementById('root'));
