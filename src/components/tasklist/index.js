@@ -7,35 +7,42 @@ class Tasklist extends Component {
         super();
 
         this.state = {
-            input: '',
-            list: [{id: 1, value:"sample item 1"},
-             {id: 2, value:"sample item 2"}]
+            inputName: '',
+            inputNo: '',
+            list: []
         };
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(event) {
-        this.setState({input: event.target.value});
+    handleChangeName = (event)=> {
+        this.setState({inputName: event.target.value});
     }
 
-    handleSubmit(event) {
+    handleChangeNo = (event)=> {
+        this.setState({inputNo: event.target.value});
+    }
+
+    handleSubmit = (event)=>{
         event.preventDefault();
         let newList = this.state.list;
-        newList.push({id: this.state.list.length+1, value: this.state.input});
+        newList.push({number: this.state.inputNo, name: this.state.inputName});
         this.setState({
-            input: '',
+            inputName: '',
+            inputNo:'',
             list: newList
         });
     }
 
     handleDelete = (id) => {
-        let newList = this.state.list.filter(item => (item.id !== id));
+        let newList = this.state.list.filter(item => (item.number !== id));
         this.setState({
             list: newList
         });
     }
+
+    // componentDidMount = (props) => {
+    //     console.log(props.match.params);
+    // }
 
     render()
     {
@@ -43,11 +50,17 @@ class Tasklist extends Component {
             <div className="App">
                 <div className="App-header">
                     <form onSubmit={this.handleSubmit}>
-                    <input type="text" value={this.state.input} onChange={this.handleChange}/>
+                    <label style={{color: "white"}}>Name: </label>
+                        <input type="text" style={{color: "black"}} value={this.state.input} onChange={this.handleChangeName}/><br />
+                    <label style={{color: "white"}}>Phone: </label>
+                        <input type="text" style={{color: "black"}} value={this.state.input} onChange={this.handleChangeNo}/><br />
                     <input type="submit" value="Submit" />
                     </form>
                 </div>
-                {this.state.list.map(item => (<Task id={item.id} key={item.id} value={item.value} onDelete={this.handleDelete}/>))}
+
+                <ul>
+                {this.state.list.map(item => (<Task id={item.number} key={item.number} value={item} onDelete={this.handleDelete}/>))}
+                </ul>
             </div>
         );
     }

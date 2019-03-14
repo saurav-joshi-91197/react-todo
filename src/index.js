@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import './bootstrap-dist/css/bootstrap.css';
 import Tasklist from './components/tasklist'
 
-ReactDOM.render(<Tasklist value="sample string" />, document.getElementById('root'));
+ReactDOM.render(<Tasklist />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
